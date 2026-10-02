@@ -2,11 +2,11 @@
 main:
   - title: 首页
     url: /
-  - title: 技术
+  - title: tech
     url: /tech/
-  - title: 日记与感想
+  - title: life
     url: /life/
-  - title: 归档
+  - title: archive
     url: /posts/
-  - title: 关于
+  - title: about
     url: /about/

@@ -1,17 +1,17 @@
 # [HOME] 首页文案与显示开关。
-intro: 技术学习、日记与感想。
-recent_title: 最新文章
+intro: MyBlog
+recent_title: 8
 recent_limit: 8
 show_sections: true
-show_recent: true
+show_recent: false
 
 # [SECTIONS] id 与文章的 section 对应。
 sections:
   - id: tech
-    title: 技术
+    title: tech
     topics: [Bioinformatics, CS Learning]
     url: /tech/
   - id: life
-    title: 日记与感想
-    topics: [日记, 观后感, 听后感]
+    title: life
+    topics: [dairy, thoughts]
     url: /life/
