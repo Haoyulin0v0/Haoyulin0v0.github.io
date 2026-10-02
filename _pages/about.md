@@ -1,8 +1,16 @@
 ---
 permalink: /about/
-title: "About"
+title: 关于这个笔记本
+eyebrow: ABOUT THE NOTEBOOK
+description: 给学习与生活，各留一页。
 ---
+这里是 Hirasawa_Yui 的个人博客。
 
-Tempor velit sint sunt ipsum tempor enim ad qui ullamco. Est dolore anim ad velit duis dolore minim sunt aliquip amet commodo labore. Ut eu pariatur aute ea aute excepteur laborum. Esse ea esse excepteur minim mollit qui cillum excepteur ex dolore magna. Labore deserunt fugiat incididunt incididunt sint ea. Consequat dolore aute laboris quis proident quis non et est consectetur ex eiusmod sit culpa.
+这个笔记本分为两个方向：
 
-Cupidatat ea do et in excepteur in. Ad nostrud ut est esse eu duis ea sunt eiusmod. Aliquip tempor veniam sint elit fugiat. Velit incididunt laboris amet incididunt labore dolore irure velit excepteur commodo deserunt laborum. Consectetur eu fugiat veniam veniam Lorem labore magna eiusmod. Ea occaecat reprehenderit pariatur consectetur minim labore ut aliquip.
+- **技术与学习**：Bioinformatics、CS Learning，以及学习和实践中的笔记。记录问题、解决过程和新的理解。
+- **日记与感想**：日常记录、观后感与歌曲听后感。记下那些当时想说的话。
+
+文章不需要每次都很完整。一个小问题、一段想法，都可以成为一篇记录的起点。
+
+你可以在[归档]({{ '/posts/' | relative_url }})中浏览文章，也可以通过 [RSS]({{ '/feed.xml' | relative_url }})订阅更新。

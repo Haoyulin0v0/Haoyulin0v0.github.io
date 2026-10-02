@@ -1,9 +1,12 @@
+# [NAV] 顶部导航，url 使用站内路径。
 main:
-  - title: "Posts"
+  - title: 首页
+    url: /
+  - title: 技术
+    url: /tech/
+  - title: 日记与感想
+    url: /life/
+  - title: 归档
     url: /posts/
-  - title: "Categories"
-    url: /categories/
-  - title: "Tags"
-    url: /tags/
-  - title: "About"
+  - title: 关于
     url: /about/

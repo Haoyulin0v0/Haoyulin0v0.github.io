@@ -1,0 +1,13 @@
+---
+layout: default
+---
+{% assign section_name = '日记与感想' %}
+{% assign section_url = '/life/' %}
+{% for section in site.data.blog.sections %}{% if section.id == page.section %}{% assign section_name = section.title %}{% assign section_url = section.url %}{% endif %}{% endfor %}
+<article class="article">
+  <a class="back-link" href="{{ section_url | relative_url }}">← {{ section_name | escape }}</a>
+  <header class="article-header"><div class="post-meta"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%Y.%m.%d' }}</time><span>{{ section_name | escape }}</span></div><h1>{{ page.title | escape }}</h1>{% if page.description %}<p class="article-description">{{ page.description | escape }}</p>{% endif %}<div class="tags">{% for tag in page.tags %}<a href="{{ '/posts/' | relative_url }}?tag={{ tag | url_encode }}">{{ tag | escape }}</a>{% endfor %}</div></header>
+  {% if page.toc %}<details class="toc" open><summary>文章目录</summary><nav aria-label="文章目录" data-toc></nav><noscript>请启用 JavaScript 以显示自动目录。</noscript></details>{% endif %}
+  <div class="prose" data-article-body>{{ content }}</div>
+  <nav class="post-navigation" aria-label="相邻文章">{% if page.previous %}<a href="{{ page.previous.url | relative_url }}"><small>← 上一篇</small>{{ page.previous.title | escape }}</a>{% endif %}{% if page.next %}<a href="{{ page.next.url | relative_url }}"><small>下一篇 →</small>{{ page.next.title | escape }}</a>{% endif %}</nav>
+</article>

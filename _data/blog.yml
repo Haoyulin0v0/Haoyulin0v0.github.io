@@ -1,0 +1,25 @@
+# [HOME] 首页文案与文章数量。
+eyebrow: A PERSONAL NOTEBOOK
+headline: 在代码与生活之间，
+headline_accent: 留下一些记录。
+intro: 这里收集学习时的探索、日常里的片段，以及作品带来的回响。慢慢写，也慢慢想。
+recent_title: 最近的记录
+recent_limit: 6
+footer_note: 保持好奇，认真生活。
+
+# [SECTIONS] id 必须与文章 front matter 的 section 一致。
+sections:
+  - id: tech
+    number: "01"
+    title: 技术与学习
+    english: TECHNOLOGY & LEARNING
+    description: 从一个问题出发，记录思路、实践与理解。
+    topics: [Bioinformatics, CS Learning, 编程实践]
+    url: /tech/
+  - id: life
+    number: "02"
+    title: 日记与感想
+    english: LIFE & REFLECTIONS
+    description: 日常的片段，电影的余韵，还有一首歌留下的心情。
+    topics: [日记, 观后感, 听后感]
+    url: /life/

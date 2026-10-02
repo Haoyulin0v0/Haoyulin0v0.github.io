@@ -1,6 +1,7 @@
 ---
-title: "Posts by Year"
+layout: archive
 permalink: /posts/
-layout: posts
-author_profile: true
+title: 全部记录
+eyebrow: THE ARCHIVE
+description: 按时间排列的笔记。也可以用关键词与标签，重新发现一段思考。
 ---
