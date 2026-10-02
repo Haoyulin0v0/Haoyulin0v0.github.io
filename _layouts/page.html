@@ -1,4 +1,4 @@
 ---
 layout: default
 ---
-<article class="page-content"><header class="page-heading"><p class="eyebrow">{{ page.eyebrow | default: 'NOTEBOOK' | escape }}</p><h1>{{ page.title | escape }}</h1>{% if page.description %}<p>{{ page.description | escape }}</p>{% endif %}</header><div class="prose">{{ content }}</div></article>
+<article class="page-content"><header class="page-heading"><h1>{{ page.title | escape }}</h1>{% if page.description %}<p>{{ page.description | escape }}</p>{% endif %}</header><div class="prose">{{ content }}</div></article>

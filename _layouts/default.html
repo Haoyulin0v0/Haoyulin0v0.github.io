@@ -7,6 +7,8 @@
   <meta name="description" content="{{ page.description | default: page.excerpt | default: site.description | strip_html | normalize_whitespace | escape }}">
   <link rel="canonical" href="{{ page.url | absolute_url }}">
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/settings.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
   <link rel="alternate" type="application/atom+xml" title="{{ site.title | escape }}" href="{{ '/feed.xml' | relative_url }}">
   <meta name="color-scheme" content="light dark">
   <script src="{{ '/assets/js/theme.js' | relative_url }}"></script>
@@ -15,7 +17,7 @@
 <body>
   <a class="skip-link" href="#main">跳到正文</a>
   <header class="site-header wrap">
-    <a class="brand" href="{{ '/' | relative_url }}"><span class="brand-mark" aria-hidden="true">h.</span>{{ site.title | escape }}<span class="brand-sub"> / notebook</span></a>
+    <a class="brand" href="{{ '/' | relative_url }}">{{ site.title | escape }}</a>
     <nav aria-label="主导航">
       {% for item in site.data.navigation.main %}
       <a href="{{ item.url | relative_url }}" {% if page.url == item.url %}aria-current="page"{% endif %}>{{ item.title | escape }}</a>
@@ -25,9 +27,8 @@
   </header>
   <main id="main" class="wrap">{{ content }}</main>
   <footer class="site-footer wrap">
-    <div><a class="footer-brand" href="{{ '/' | relative_url }}">{{ site.title | escape }}</a><p>{{ site.data.blog.footer_note | escape }}</p></div>
-    <div class="footer-links"><a href="{{ '/posts/' | relative_url }}">全部文章</a><a href="{{ '/feed.xml' | relative_url }}">RSS 订阅</a><a href="https://github.com/{{ site.github_username | escape }}">GitHub ↗</a></div>
     <small>© {{ site.time | date: '%Y' }} {{ site.title | escape }}</small>
+    <div class="footer-links"><a href="{{ '/feed.xml' | relative_url }}">RSS</a><a href="https://github.com/{{ site.github_username | escape }}">GitHub</a></div>
   </footer>
 </body>
 </html>

@@ -4,10 +4,10 @@ layout: default
 {% assign entries = site.posts %}
 {% if page.section %}{% assign entries = site.posts | where: 'section', page.section %}{% endif %}
 <section class="archive" data-archive data-section="{{ page.section | escape }}" data-search-url="{{ '/search.json' | relative_url }}">
-  <header class="page-heading"><p class="eyebrow">{{ page.eyebrow | escape }}</p><h1>{{ page.title | escape }}</h1><p>{{ page.description | escape }}</p></header>
+  <header class="page-heading"><h1>{{ page.title | escape }}</h1>{% if page.description %}<p>{{ page.description | escape }}</p>{% endif %}</header>
   <div class="archive-tools" data-search-tools hidden><label for="post-search">搜索记录</label><input id="post-search" type="search" placeholder="输入标题、标签或正文关键词…" autocomplete="off"><div class="filter-row"><label for="tag-filter">标签</label><select id="tag-filter"><option value="">全部标签</option></select><button type="button" data-clear-filters>重置</button><span class="result-count" data-result-count role="status" aria-live="polite"></span></div></div>
   <noscript><p class="archive-note">以下展示全部文章；启用 JavaScript 后可搜索正文、筛选标签。</p></noscript>
   <p class="archive-note" data-search-error hidden>搜索暂时无法加载，请刷新重试。你仍可阅读以下文章。</p>
-  <div class="post-grid" data-post-list>{% for post in entries %}{% include post-card.html post=post %}{% else %}<p class="empty-state">{{ page.empty_message | default: '这里还没有记录。' | escape }}</p>{% endfor %}</div>
-  <p class="empty-state" data-no-results hidden>没有找到匹配的记录，换个关键词试试。</p>
+  <div class="post-grid" data-post-list>{% for post in entries %}{% include post-card.html post=post %}{% else %}<p class="empty-state">{{ page.empty_message | default: '暂无文章。' | escape }}</p>{% endfor %}</div>
+  <p class="empty-state" data-no-results hidden>没有匹配的文章。</p>
 </section>

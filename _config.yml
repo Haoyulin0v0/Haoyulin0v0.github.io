@@ -1,6 +1,6 @@
 # [SITE] 全站信息；修改后重启 Jekyll。
 title: Hirasawa_Yui
-description: 记录技术探索，也收藏日常里值得回味的瞬间。
+description: 技术学习、日记与感想。
 url: "https://haoyulin0v0.github.io"
 baseurl: "" # 项目站点填 /仓库名；个人主页保持为空。
 lang: zh-CN

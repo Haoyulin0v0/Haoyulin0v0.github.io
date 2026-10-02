@@ -1,0 +1,7 @@
+/* [STYLE:CUSTOM] 自由修改区：最后加载，覆盖基础样式和 appearance.yml 设置。
+ * 示例：去掉文章边框
+ * .post-card { border: 0; padding-inline: 0; }
+ *
+ * 示例：背景图模式下让阅读区不透明
+ * #main { background: var(--surface); padding: 24px; }
+ */

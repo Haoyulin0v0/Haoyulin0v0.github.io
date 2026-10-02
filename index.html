@@ -1,16 +1,26 @@
 ---
 layout: default
 ---
-<!-- [HOME:HERO] 文案入口：_data/blog.yml -->
-<section class="hero">
-  <div class="hero-copy"><p class="eyebrow"><span class="status-dot"></span>{{ site.data.blog.eyebrow | escape }}</p><h1>{{ site.data.blog.headline | escape }}<br><span>{{ site.data.blog.headline_accent | escape }}</span></h1><p class="hero-intro">{{ site.data.blog.intro | escape }}</p><a class="button" href="{{ '/posts/' | relative_url }}">翻开笔记 <span aria-hidden="true">↗</span></a></div>
-  <div class="notebook" aria-hidden="true"><div class="notebook-top">FIELD NOTES <span>日常 / 探索</span></div><div class="notebook-lines"><span>01 — learn something</span><span>02 — feel something</span><span>03 — write it down</span></div><div class="notebook-bottom">好奇心，是一条不断延伸的线。<span>✳</span></div></div>
-</section>
-<!-- [HOME:SECTIONS] 栏目入口：_data/blog.yml 的 sections -->
-<section class="section-grid" aria-label="写作栏目">
+<!-- [HOME:INTRO] 文案：_config.yml、_data/blog.yml -->
+<header class="home-heading">
+  <h1>{{ site.title | escape }}</h1>
+  {% if site.data.blog.intro != empty %}<p>{{ site.data.blog.intro | escape }}</p>{% endif %}
+</header>
+<!-- [HOME:SECTIONS] 可在 _data/blog.yml 关闭或增加栏目。 -->
+{% if site.data.blog.show_sections %}
+<section class="section-grid" aria-label="栏目">
   {% for section in site.data.blog.sections %}
-  <a class="section-card" href="{{ section.url | relative_url }}"><div class="section-top"><span>{{ section.number }}</span><span>{{ section.english | escape }}</span><span aria-hidden="true">↗</span></div><h2>{{ section.title | escape }}</h2><p>{{ section.description | escape }}</p><div class="topic-list">{% for topic in section.topics %}<span>{{ topic | escape }}</span>{% endfor %}</div></a>
+  <a class="section-card" href="{{ section.url | relative_url }}">
+    <h2>{{ section.title | escape }}</h2>
+    <p>{% for topic in section.topics %}{{ topic | escape }}{% unless forloop.last %} / {% endunless %}{% endfor %}</p>
+  </a>
   {% endfor %}
 </section>
-<!-- [HOME:RECENT] 列表组件：_includes/post-card.html -->
-<section class="recent"><div class="section-heading"><div><p class="eyebrow">LATEST ENTRIES</p><h2>{{ site.data.blog.recent_title | escape }}</h2></div><a class="text-link" href="{{ '/posts/' | relative_url }}">查看全部 <span aria-hidden="true">→</span></a></div><div class="post-grid">{% for post in site.posts limit:site.data.blog.recent_limit %}{% include post-card.html post=post %}{% else %}<p class="empty-state">笔记本已经准备好，等待第一篇记录。</p>{% endfor %}</div></section>
+{% endif %}
+<!-- [HOME:RECENT] 共用列表组件：_includes/post-card.html -->
+{% if site.data.blog.show_recent %}
+<section class="recent">
+  <div class="section-heading"><h2>{{ site.data.blog.recent_title | escape }}</h2><a class="text-link" href="{{ '/posts/' | relative_url }}">全部文章</a></div>
+  <div class="post-grid">{% for post in site.posts limit:site.data.blog.recent_limit %}{% include post-card.html post=post %}{% else %}<p class="empty-state">暂无文章。</p>{% endfor %}</div>
+</section>
+{% endif %}

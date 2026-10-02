@@ -5,5 +5,5 @@
   <div class="post-meta"><span>{{ section_name | escape }}</span><time datetime="{{ entry.date | date_to_xmlschema }}">{{ entry.date | date: '%Y.%m.%d' }}</time></div>
   <h3><a href="{{ entry.url | relative_url }}">{{ entry.title | escape }}</a></h3>
   <p>{{ entry.description | default: entry.excerpt | strip_html | normalize_whitespace | truncate: 120 | escape }}</p>
-  <div class="card-bottom"><div class="tags">{% for tag in entry.tags limit:3 %}<a href="{{ '/posts/' | relative_url }}?tag={{ tag | url_encode }}">{{ tag | escape }}</a>{% endfor %}</div><a class="read-link" href="{{ entry.url | relative_url }}" aria-label="阅读：{{ entry.title | escape }}">↗</a></div>
+  <div class="card-bottom"><div class="tags">{% for tag in entry.tags limit:3 %}<a href="{{ '/posts/' | relative_url }}?tag={{ tag | url_encode }}">{{ tag | escape }}</a>{% endfor %}</div><a class="read-link" href="{{ entry.url | relative_url }}" aria-label="阅读：{{ entry.title | escape }}">阅读</a></div>
 </article>

@@ -1,0 +1,44 @@
+# [APPEARANCE] 常用外观设置。修改后自动重建，无需编辑页面布局。
+# 字体填写 CSS font-family；尺寸需带单位。列数填写正整数。
+fonts:
+  body: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif'
+  heading: 'inherit'
+  code: 'Consolas, "SFMono-Regular", monospace'
+  body_size: 16px
+  heading_size: 28px
+  line_height: 1.8
+
+layout:
+  site_width: 960px
+  article_width: 720px
+  page_padding: 24px
+  section_columns: 2
+  post_columns: 1
+  gap: 16px
+  radius: 4px
+
+# 背景图：填 /assets/images/文件名；留空为纯色。
+# 同时作用于深浅色模式；用颜色切换主题时建议保持为空。
+background:
+  image: ""
+  size: cover
+  position: center
+  attachment: scroll
+
+light:
+  background: "#ffffff"
+  surface: "#ffffff"
+  text: "#202124"
+  muted: "#666666"
+  accent: "#245b9e"
+  subtle: "#f4f5f6"
+  border: "#e3e5e8"
+
+dark:
+  background: "#18191b"
+  surface: "#202124"
+  text: "#eceef0"
+  muted: "#b0b4ba"
+  accent: "#8ab4f8"
+  subtle: "#2a2c30"
+  border: "#3c4046"

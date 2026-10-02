@@ -81,7 +81,7 @@
       tagLink.href = url.pathname + url.search;
       tags.append(tagLink);
     });
-    const read = element('a', 'read-link', '↗');
+    const read = element('a', 'read-link', '阅读');
     read.href = post.url;
     read.setAttribute('aria-label', `阅读：${post.title}`);
     bottom.append(tags, read);
