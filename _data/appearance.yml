@@ -18,12 +18,19 @@ layout:
   radius: 4px
 
 # 背景图：填 /assets/images/文件名；留空为纯色。
-# 同时作用于深浅色模式；用颜色切换主题时建议保持为空。
+# 原图不用修改。opacity 越低越淡，blur 越大越模糊。
 background:
   image: "/assets/images/pixiv_148997860_p0.jpg"
   size: cover
   position: center
-  attachment: scroll
+  attachment: fixed # fixed 固定在窗口；scroll 跟随页面。
+  opacity: 0.28 # 0–1，图片不透明度。
+  blur: 18px
+
+# 半透明阅读面板。opacity: 1 为不透明；blur: 0px 关闭毛玻璃。
+panels:
+  opacity: 0.88
+  blur: 10px
 
 light:
   background: "#ffffff"

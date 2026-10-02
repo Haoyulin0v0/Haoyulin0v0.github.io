@@ -17,10 +17,14 @@ layout: null
   --post-columns: {{ appearance.layout.post_columns }};
   --gap: {{ appearance.layout.gap }};
   --radius: {{ appearance.layout.radius }};
-  --background-image: {% if appearance.background.image != empty %}url("{{ appearance.background.image | relative_url }}"){% else %}none{% endif %};
+  --background-image: {% if appearance.background.image and appearance.background.image != empty %}url("{{ appearance.background.image | relative_url }}"){% else %}none{% endif %};
   --background-size: {{ appearance.background.size }};
   --background-position: {{ appearance.background.position }};
-  --background-attachment: {{ appearance.background.attachment }};
+  --background-layer-position: {% if appearance.background.attachment == 'scroll' %}absolute{% else %}fixed{% endif %};
+  --background-opacity: {{ appearance.background.opacity | default: 0.28 }};
+  --background-blur: {{ appearance.background.blur | default: '18px' }};
+  --panel-opacity: {{ appearance.panels.opacity | default: 0.88 }};
+  --panel-blur: {{ appearance.panels.blur | default: '10px' }};
 }
 :root {
   color-scheme: light;

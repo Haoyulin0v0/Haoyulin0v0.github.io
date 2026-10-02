@@ -25,11 +25,26 @@ background:
   image: "/assets/images/background.jpg"
   size: cover
   position: center
-  attachment: scroll
+  attachment: fixed
+  opacity: 0.28
+  blur: 18px
 ```
 
 把图片放到对应路径；将 `image` 改回 `""` 恢复纯色。
-图片同时用于深浅色模式，建议选不影响文字阅读的图片。需要给正文加背景时，在 `custom.css` 中写：
+原图不需要处理，网页用独立图层虚化背景，正文不会被模糊。
+`opacity` 是图片不透明度（0–1），越低越淡；`blur` 是虚化半径，设为 `0px` 关闭。
+`attachment: fixed` 固定背景，`scroll` 跟随页面滚动。背景图片同时用于深浅色模式，透出各自的背景底色。
+
+导航、正文和页脚使用半透明面板，在同一文件里调整：
+
+```yaml
+panels:
+  opacity: 0.88
+  blur: 10px
+```
+
+`opacity: 1` 恢复不透明面板；`blur: 0px` 关闭面板毛玻璃。
+如果希望自行覆盖阅读区样式，可以在 `custom.css` 中写：
 
 ```css
 #main {
