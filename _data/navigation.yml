@@ -6,6 +6,8 @@ main:
     url: /tech/
   - title: life
     url: /life/
+  - title: review
+    url: /review/
   - title: archive
     url: /posts/
   - title: about

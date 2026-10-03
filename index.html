@@ -10,8 +10,9 @@ layout: default
 {% if site.data.blog.show_sections %}
 <section class="section-grid" aria-label="栏目">
   {% for section in site.data.blog.sections %}
+  {% assign section_posts = site.posts | where: 'section', section.id %}
   <a class="section-card" href="{{ section.url | relative_url }}">
-    <h2>{{ section.title | escape }}</h2>
+    <div class="section-card-heading"><h2>{{ section.title | escape }}</h2><span class="section-count">{{ section_posts.size }} 篇</span></div>
     <p>{% for topic in section.topics %}{{ topic | escape }}{% unless forloop.last %} / {% endunless %}{% endfor %}</p>
   </a>
   {% endfor %}

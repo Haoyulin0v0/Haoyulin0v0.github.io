@@ -21,12 +21,13 @@
     <a class="brand" href="{{ '/' | relative_url }}">{{ site.title | escape }}</a>
     <nav aria-label="主导航">
       {% for item in site.data.navigation.main %}
-      <a href="{{ item.url | relative_url }}" {% if page.url == item.url %}aria-current="page"{% endif %}>{{ item.title | escape }}</a>
+      {% assign nav_prefix = page.url | slice: 0, item.url.size %}
+      <a href="{{ item.url | relative_url }}" {% if page.url == item.url %}aria-current="page"{% elsif item.url != '/' and nav_prefix == item.url %}aria-current="location"{% endif %}>{{ item.title | escape }}</a>
       {% endfor %}
     </nav>
     <button class="theme-toggle" type="button" aria-label="切换到深色模式" aria-pressed="false" data-theme-toggle hidden>深色</button>
   </header>
-  <main id="main" class="wrap">{{ content }}</main>
+  <main id="main" class="wrap{% if page.layout == 'post' %} reading-panel{% endif %}">{{ content }}</main>
   <footer class="site-footer wrap">
     <small>© {{ site.time | date: '%Y' }} {{ site.title | escape }}</small>
     <div class="footer-links"><a href="{{ '/feed.xml' | relative_url }}">RSS</a><a href="https://github.com/{{ site.github_username | escape }}">GitHub</a></div>

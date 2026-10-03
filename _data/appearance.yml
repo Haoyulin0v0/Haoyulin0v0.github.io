@@ -7,12 +7,14 @@ fonts:
   body_size: 16px
   heading_size: 28px
   line_height: 1.8
+  article_size: 16px # 文章正文字号，独立于导航和列表。
+  article_line_height: 1.95
 
 layout:
   site_width: 960px
   article_width: 720px
   page_padding: 24px
-  section_columns: 2
+  section_columns: 3
   post_columns: 1
   gap: 16px
   radius: 4px
@@ -20,17 +22,18 @@ layout:
 # 背景图：填 /assets/images/文件名；留空为纯色。
 # 原图不用修改。opacity 越低越淡，blur 越大越模糊。
 background:
-  image: "/assets/images/pixiv_148997860_p0.jpg"
+  image: "/assets/images/back.png"
   size: cover
   position: center
   attachment: fixed # fixed 固定在窗口；scroll 跟随页面。
   opacity: 0.28 # 0–1，图片不透明度。
-  blur: 18px
+  blur: 0px
 
 # 半透明阅读面板。opacity: 1 为不透明；blur: 0px 关闭毛玻璃。
 panels:
   opacity: 0.88
-  blur: 10px
+  reading_opacity: 0.96 # 文章阅读区底色更实，减少背景图干扰。
+  blur: 0px
 
 light:
   background: "#ffffff"

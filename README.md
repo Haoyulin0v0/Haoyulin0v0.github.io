@@ -1,6 +1,6 @@
 # 个人博客
 
-Jekyll / GitHub Pages 文字博客。包含技术、日记与感想两个栏目，文章列表、搜索、标签筛选、目录和深浅色模式。
+Jekyll / GitHub Pages 文字博客。包含 tech（技术）、life（日记）、review（作品感想）三个栏目，以及文章列表、搜索、标签筛选、目录和深浅色模式。
 
 ## 修改入口
 
@@ -24,7 +24,7 @@ Jekyll / GitHub Pages 文字博客。包含技术、日记与感想两个栏目�
 
 ## 写文章
 
-复制 `_drafts/technical-note.md` 或 `_drafts/life-note.md` 到 `_posts/YYYY-MM-DD-短名.md`。
+复制 `_drafts/technical-note.md`、`_drafts/life-note.md` 或 `_drafts/review-note.md` 到 `_posts/YYYY-MM-DD-短名.md`。文件名必须带日期，否则 Jekyll 不会将其识别为文章。
 修改文章头部：
 
 ```yaml
@@ -38,10 +38,10 @@ toc: true
 ---
 ```
 
-`section: tech` 对应技术；`section: life` 对应日记与感想。
+`section: tech` 对应技术；`section: life` 对应日记；`section: review` 对应作品感想。
 `categories` 影响地址，`tags` 用于细分主题。草稿和未来日期文章默认不发布。
 
-现有 `2026-10-02-Dairy.md` 是占位文章，可替换或删除。
+文章配图放在 `assets/images/`，链接使用 `{{ '/assets/images/文件名.png' | relative_url }}`。以 `_` 开头的普通图片目录默认不会输出，避免使用 `_pic/` 或 Windows 反斜杠路径。
 
 ## 本地运行
 

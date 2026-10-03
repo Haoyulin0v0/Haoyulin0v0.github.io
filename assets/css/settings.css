@@ -10,6 +10,8 @@ layout: null
   --font-size: {{ appearance.fonts.body_size }};
   --heading-size: {{ appearance.fonts.heading_size }};
   --line-height: {{ appearance.fonts.line_height }};
+  --article-size: {{ appearance.fonts.article_size | default: appearance.fonts.body_size }};
+  --article-line-height: {{ appearance.fonts.article_line_height | default: appearance.fonts.line_height }};
   --width: {{ appearance.layout.site_width }};
   --article-width: {{ appearance.layout.article_width }};
   --page-padding: {{ appearance.layout.page_padding }};
@@ -24,6 +26,7 @@ layout: null
   --background-opacity: {{ appearance.background.opacity | default: 0.28 }};
   --background-blur: {{ appearance.background.blur | default: '18px' }};
   --panel-opacity: {{ appearance.panels.opacity | default: 0.88 }};
+  --reading-panel-opacity: {{ appearance.panels.reading_opacity | default: appearance.panels.opacity }};
   --panel-blur: {{ appearance.panels.blur | default: '10px' }};
 }
 :root {

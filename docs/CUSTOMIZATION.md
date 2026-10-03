@@ -44,6 +44,7 @@ panels:
 ```
 
 `opacity: 1` 恢复不透明面板；`blur: 0px` 关闭面板毛玻璃。
+`panels.reading_opacity` 单独控制文章页的底色不透明度，默认 `0.96`；不影响首页、栏目页和背景图片。
 如果希望自行覆盖阅读区样式，可以在 `custom.css` 中写：
 
 ```css
@@ -69,6 +70,7 @@ fonts:
 
 `body` 是正文与界面字体；`heading: inherit` 让标题跟随正文，也可以改为独立字体。
 `body_size` 是全站基准字号，`heading_size` 是页面大标题字号。
+`fonts.article_size` 和 `fonts.article_line_height` 单独控制正文的字号与行距，例如 `16px` 和 `1.95`，不改变导航与文章列表。
 填写 CSS 字体列表，字体名称需要在设备上存在；默认使用系统字体。
 
 使用自己的字体文件：放到 `assets/fonts/`，在 `custom.css` 里声明：
@@ -161,7 +163,9 @@ show_recent: true
 
 ## 文章与功能接口
 
-文章使用 Markdown；技术模板在 `_drafts/technical-note.md`，日记模板在 `_drafts/life-note.md`。
+文章使用 Markdown；技术模板在 `_drafts/technical-note.md`，日记模板在 `_drafts/life-note.md`，作品感想模板在 `_drafts/review-note.md`。
+公开文章必须命名为 `_posts/YYYY-MM-DD-短名.md`。`tech`、`life`、`review` 分别对应技术、日记和作品感想。
+图片放在 `assets/images/`，使用 `![说明]({{ '/assets/images/文件名.png' | relative_url }})`；不要使用 `_pic/` 或反斜杠路径。
 `section` 决定栏目，`categories` 决定 URL，`tags` 决定标签。`toc: true` 开启 h2 / h3 目录。
 未设置 `section` 的旧文章默认归到 `life`。
 
