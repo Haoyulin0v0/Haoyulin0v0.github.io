@@ -1,9 +1,9 @@
 # [HOME] 首页文案与显示开关。
 intro: MyBlog
-recent_title: 8
+recent_title: 最新文章
 recent_limit: 8
 show_sections: true
-show_recent: false
+show_recent: true
 
 # [SECTIONS] id 与文章的 section 对应。
 sections:
