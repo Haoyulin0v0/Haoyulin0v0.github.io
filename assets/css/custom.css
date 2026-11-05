@@ -1,7 +1,67 @@
-/* [STYLE:CUSTOM] 自由修改区：最后加载，覆盖基础样式和 appearance.yml 设置。
- * 示例：去掉文章边框
- * .post-card { border: 0; padding-inline: 0; }
- *
- * 示例：背景图模式下让阅读区不透明
- * #main { background: var(--surface); padding: 24px; }
- */
+/* 配色、字体和背景沿用 appearance.yml；文章卡片与中间区域透明。 */
+#main, #main.reading-panel {
+  background: transparent;
+  border: 0;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+.post-card, .project-card {
+  background: transparent;
+  box-shadow: none;
+  min-width: 0;
+  transition: border-color .18s ease;
+}
+.post-card { padding: 24px 0; border: 0; border-top: 1px solid var(--line); border-radius: 0; }
+.post-grid { gap: 0; }
+.post-card h3 { font-size: 21px; margin-bottom: 10px; }
+.post-card p { max-width: 66ch; }
+.card-bottom { flex-wrap: wrap; }
+.tags { gap: 8px; }
+.tags a, .tag-chip {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 3px 10px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 12px;
+}
+.tags a:hover { text-decoration: none; border-color: var(--accent); }
+.eyebrow { margin-bottom: 12px; color: var(--muted); letter-spacing: .12em; font-size: 11px; }
+.profile-home { display: flex; align-items: center; gap: 28px; padding: 60px 0 48px; }
+.profile-avatar { width: 112px; height: 112px; flex-shrink: 0; border-radius: 50%; object-fit: cover; border: 1px solid var(--line); }
+.profile-home h1 { margin-bottom: 12px; font-size: clamp(28px, 5vw, 38px); }
+.profile-home .eyebrow { margin-bottom: 5px; }
+.profile-intro { color: var(--muted); margin-bottom: 16px; }
+.profile-links { display: flex; flex-wrap: wrap; gap: 20px; font-size: 13px; color: var(--accent); }
+.projects { padding-top: 24px; border-top: 1px solid var(--line); }
+.projects .section-heading { margin-bottom: 22px; }
+.project-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.project-card { display: flex; flex-direction: column; padding: 22px; border: 1px solid var(--line); border-radius: var(--radius); }
+.project-card:hover { border-color: var(--accent); }
+.project-card > .eyebrow { display: flex; justify-content: space-between; }
+.project-card h3 { margin: 4px 0 10px; }
+.project-card p { color: var(--muted); font-size: 14px; margin-bottom: 16px; overflow-wrap: anywhere; }
+.project-language { color: var(--muted); font-size: 12px; margin-top: auto; }
+.archive-tools input { background: transparent; }
+.tag-filter { margin-top: 18px; }
+.filter-label { display: block; font-size: 13px; margin-bottom: 10px; }
+.filter-label small { color: var(--muted); margin-left: 8px; }
+.filter-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.tag-chip { overflow-wrap: anywhere; text-align: left; }
+.tag-chip span { opacity: .7; margin-left: 4px; }
+.tag-chip:hover { border-color: var(--accent); color: var(--accent); }
+.tag-chip[aria-pressed="true"] { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+.filter-row button { background: transparent; }
+.about-section { padding: 8px 0 20px; border-bottom: 1px solid var(--line); }
+.about-section:last-child { border-bottom: 0; }
+.about-empty, .publication p { color: var(--muted); }
+.contact-list { list-style: none; padding-left: 0 !important; }
+.publication h3 { font-size: 17px; }
+@media (max-width: 700px) {
+  .profile-home { flex-direction: column; align-items: flex-start; gap: 20px; padding: 36px 0; }
+  .profile-avatar { width: 88px; height: 88px; }
+  .project-grid { grid-template-columns: 1fr; }
+  .project-card { padding: 18px; }
+  .post-card { padding: 22px 0; }
+}
+@media (prefers-reduced-motion: reduce) { .post-card, .project-card { transition: none; } }

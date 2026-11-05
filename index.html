@@ -1,27 +1,17 @@
 ---
 layout: default
 ---
-<!-- [HOME:INTRO] 文案：_config.yml、_data/blog.yml -->
-<header class="home-heading">
-  <h1>{{ site.title | escape }}</h1>
-  {% if site.data.blog.intro != empty %}<p>{{ site.data.blog.intro | escape }}</p>{% endif %}
-</header>
-<!-- [HOME:SECTIONS] 可在 _data/blog.yml 关闭或增加栏目。 -->
-{% if site.data.blog.show_sections %}
-<section class="section-grid" aria-label="栏目">
-  {% for section in site.data.blog.sections %}
-  {% assign section_posts = site.posts | where: 'section', section.id %}
-  <a class="section-card" href="{{ section.url | relative_url }}">
-    <div class="section-card-heading"><h2>{{ section.title | escape }}</h2><span class="section-count">{{ section_posts.size }} 篇</span></div>
-    <p>{% for topic in section.topics %}{{ topic | escape }}{% unless forloop.last %} / {% endunless %}{% endfor %}</p>
-  </a>
-  {% endfor %}
+{% assign profile = site.data.profile %}
+<section class="profile-home" aria-label="个人介绍">
+  {% if profile.avatar and profile.avatar != empty %}<img class="profile-avatar" src="{{ profile.avatar | relative_url }}" alt="{{ profile.name | escape }} 的头像" width="112" height="112">{% endif %}
+  <div><p class="eyebrow">PERSONAL SPACE</p><h1>{{ profile.name | default: site.title | escape }}</h1>
+    {% if profile.intro and profile.intro != empty %}<p class="profile-intro">{{ profile.intro | escape }}</p>{% endif %}
+    <div class="profile-links">{% if profile.github and profile.github != empty %}<a href="{{ profile.github | escape }}">GitHub ↗</a>{% endif %}<a href="{{ '/documents/' | relative_url }}">阅读文章 →</a><a href="{{ '/about/' | relative_url }}">关于我 →</a></div>
+  </div>
 </section>
-{% endif %}
-<!-- [HOME:RECENT] 共用列表组件：_includes/post-card.html -->
-{% if site.data.blog.show_recent %}
-<section class="recent">
-  <div class="section-heading"><h2>{{ site.data.blog.recent_title | escape }}</h2><a class="text-link" href="{{ '/posts/' | relative_url }}">全部文章</a></div>
-  <div class="post-grid">{% for post in site.posts limit:site.data.blog.recent_limit %}{% include post-card.html post=post %}{% else %}<p class="empty-state">暂无文章。</p>{% endfor %}</div>
+<section class="projects" aria-labelledby="projects-title">
+  <div class="section-heading"><h2 id="projects-title">GitHub repositories</h2>{% if profile.github and profile.github != empty %}<a class="text-link" href="{{ profile.github | escape }}?tab=repositories">全部仓库 ↗</a>{% endif %}</div>
+  <div class="project-grid">{% for project in site.data.projects %}{% if project.url and project.url != empty %}
+    <a class="project-card" href="{{ project.url | escape }}"><span class="eyebrow">REPOSITORY <span aria-hidden="true">↗</span></span><h3>{{ project.name | escape }}</h3>{% if project.description and project.description != empty %}<p>{{ project.description | escape }}</p>{% endif %}{% if project.language and project.language != empty %}<span class="project-language">{{ project.language | escape }}</span>{% endif %}</a>
+  {% endif %}{% else %}<p class="empty-state">暂无公开展示的仓库。</p>{% endfor %}</div>
 </section>
-{% endif %}

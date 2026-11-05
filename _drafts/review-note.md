@@ -1,9 +1,8 @@
 ---
 title: "作品名：感想标题"
 description: "这篇文章主要想讨论的内容。"
-section: review
-categories: [review]
 tags: [观后感]
+published: false
 toc: true
 ---
 

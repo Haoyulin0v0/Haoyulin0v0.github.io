@@ -1,5 +1,6 @@
 ---
-layout: archive
+layout: redirect
 permalink: /posts/
-title: 全部文章
+title: documents
+sitemap: false
 ---

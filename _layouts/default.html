@@ -22,7 +22,7 @@
     <nav aria-label="主导航">
       {% for item in site.data.navigation.main %}
       {% assign nav_prefix = page.url | slice: 0, item.url.size %}
-      <a href="{{ item.url | relative_url }}" {% if page.url == item.url %}aria-current="page"{% elsif item.url != '/' and nav_prefix == item.url %}aria-current="location"{% endif %}>{{ item.title | escape }}</a>
+      <a href="{{ item.url | relative_url }}" {% if item.url == '/documents/' and page.layout == 'post' %}aria-current="location"{% elsif page.url == item.url %}aria-current="page"{% elsif item.url != '/' and nav_prefix == item.url %}aria-current="location"{% endif %}>{{ item.title | escape }}</a>
       {% endfor %}
     </nav>
     <button class="theme-toggle" type="button" aria-label="切换到深色模式" aria-pressed="false" data-theme-toggle hidden>深色</button>

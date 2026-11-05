@@ -1,9 +1,8 @@
 ---
 title: "技术文章标题"
 description: "一句话说明问题与收获。"
-section: tech
-categories: [tech]
 tags: [Bioinformatics]
+published: false
 toc: true
 ---
 

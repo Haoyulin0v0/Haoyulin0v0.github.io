@@ -1,58 +1,56 @@
-# 个人博客
+# 个人网站
 
-Jekyll / GitHub Pages 文字博客。包含 tech（技术）、life（日记）、review（作品感想）三个栏目，以及文章列表、搜索、标签筛选、目录和深浅色模式。
+Jekyll / GitHub Pages。首页展示头像与仓库，documents 按标签集中展示文章，about 放联系方式、CV 与文章成果。
 
-## 修改入口
+# 网站修改入口
 
-| 内容 | 文件 |
+| 想改什么 | 编辑文件 |
 | --- | --- |
-| 背景、字体、字号、行距、配色、宽度、列数 | `_data/appearance.yml` |
-| 自由添加或覆盖 CSS | `assets/css/custom.css` |
-| 首页说明、栏目、文章数量、区块开关 | `_data/blog.yml` |
-| 网站名称、域名 | `_config.yml` |
-| 导航 | `_data/navigation.yml` |
-| 首页结构 | `index.html` |
-| 文章页 | `_layouts/post.html` |
-| 文章列表组件 | `_includes/post-card.html` |
-| 搜索、目录、主题切换 | `assets/js/main.js` |
-| 关于页面 | `_pages/about.md` |
+| 头像、简介、GitHub、邮箱、其他联系方式、CV、文章与成果 | `_data/profile.yml` |
+| 首页仓库预览：名称、链接、简介、语言 | `_data/projects.yml` |
+| 写作时参考的标签选项 | `_data/tags.yml` |
+| 顶部导航 | `_data/navigation.yml` |
+| 字体、背景、宽度与配色 | `_data/appearance.yml` |
+| 透明卡片等样式 | `assets/css/custom.css` |
+| 新文章模板 | `_drafts/document.md` |
 
-详细例子见 [修改指南](docs/CUSTOMIZATION.md)。
+首页放头像、个人介绍和仓库预览；documents 集中展示文章，按标签多选筛选；about 放联系方式、CV 和将来的文章与成果。仓库预览完全由配置文件控制，不依赖访客访问 GitHub API。
 
-样式加载顺序：`main.css`（基础结构）→ `settings.css`（根据外观配置生成）→ `custom.css`（自由覆盖）。
-常用设置集中在数据文件里，页面结构可直接改 HTML，没有远程主题。
+## 写文章与展示开关
 
-## 写文章
-
-复制 `_drafts/technical-note.md`、`_drafts/life-note.md` 或 `_drafts/review-note.md` 到 `_posts/YYYY-MM-DD-短名.md`。文件名必须带日期，否则 Jekyll 不会将其识别为文章。
-修改文章头部：
+复制 `_drafts/document.md` 到 `_posts/2026-11-05-my-note.md`，文件名必须使用 `YYYY-MM-DD-短名.md`。例如：
 
 ```yaml
 ---
-title: 文章标题
+title: 我的文章
 description: 简介
-section: tech
-categories: [tech]
-tags: [CS Learning]
+tags: [动画, 观后感, shirobako, TV]
+published: false
 toc: true
 ---
 ```
 
-`section: tech` 对应技术；`section: life` 对应日记；`section: review` 对应作品感想。
-`categories` 影响地址，`tags` 用于细分主题。草稿和未来日期文章默认不发布。
+- `tags` 数量不限，自由增删；所有标签都会显示在文章与卡片上。documents 自动收集已发布文章的标签；多选时同时匹配所选标签。
+- `published: false`：不构建这篇文章，documents、搜索、标签、RSS 和 sitemap 都不会收录。
+- `published: true`：正式发布。布尔值不加引号。不填时默认发布。
+- `_drafts/` 目录中的文件默认也不发布。需要发布时移到 `_posts/` 并将 `published` 改为 `true`。
+- `toc` 仅控制文章内部目录。
+- 旧文章中的 `categories` 仅为保留原有网址，无需填写 `section`。新文章无需分类字段。
 
-文章配图放在 `assets/images/`，链接使用 `{{ '/assets/images/文件名.png' | relative_url }}`。以 `_` 开头的普通图片目录默认不会输出，避免使用 `_pic/` 或 Windows 反斜杠路径。
+注意：不发布不等于私密，公开 GitHub 仓库内的源文件仍可被查看。
 
-## 本地运行
+## 头像、联系方式和 CV
 
-安装 Ruby 和 Bundler 后：
+在 `_data/profile.yml` 中替换头像网址，或上传图片到 `assets/images/` 后填写站内路径。邮箱只填地址；其他联系方式按注释示例添加。空字段不会生成空链接。
 
-```sh
-bundle install
-bundle exec jekyll serve
-```
+上传 CV PDF 到 `assets/files/`，填写 `cv_url: /assets/files/cv.pdf`；也可填外部网址。以后在 `publications` 列表里添加标题、链接和简介即可展示文章与成果。
 
-打开 http://127.0.0.1:4000 。修改 `_config.yml` 后重启；数据、样式和文章修改会自动重建。
-用 `bundle exec jekyll build` 检查完整构建。草稿预览加 `--drafts`。
+## 链接与图片
 
-推送后由 GitHub Pages 发布。本次只修改本地文件。
+推荐写 `[链接文字](https://example.com)` 或 `<https://example.com>`。这两种写法即使禁用 JavaScript 也能点击。正文直接粘贴的 http/https 网址会自动变为链接；代码块内的内容不转换。
+
+图片推荐存放在 `assets/images/`，例如 `![图片说明](/assets/images/example.png)`。已有 `_pic/` 目录也会输出，兼容旧文章。折叠内容内要解析 Markdown，请写 `<details markdown="1">`。
+
+## 本地预览
+
+安装 Ruby 和 Bundler 后运行 `bundle install`、`bundle exec jekyll serve`。完整构建检查用 `bundle exec jekyll build`。修改 `_config.yml` 后重启。推送 master 后由 GitHub Pages 构建发布。
