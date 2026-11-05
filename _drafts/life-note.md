@@ -1,9 +1,8 @@
 ---
 title: "日记或感想标题"
 description: "一句话记录这篇文章的心情。"
-section: life
-categories: [life]
 tags: [日记]
+published: false
 toc: false
 ---
 

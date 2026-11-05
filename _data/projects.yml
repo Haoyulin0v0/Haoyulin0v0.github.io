@@ -1,0 +1,14 @@
+# 首页仓库预览；可增删条目。description 和 language 留空时不显示。
+# 只在这里填写希望公开展示的仓库。
+- name: AnkiRead
+  url: https://github.com/Haoyulin0v0/AnkiRead
+  description: ""
+  language: ""
+- name: RestrVolu
+  url: https://github.com/Haoyulin0v0/RestrVolu
+  description: ""
+  language: ""
+- name: pixiv-localgallery
+  url: https://github.com/Haoyulin0v0/pixiv-localgallery
+  description: ""
+  language: ""

@@ -1,14 +1,8 @@
-# [NAV] 顶部导航，url 使用站内路径。
+# 顶部导航
 main:
   - title: 首页
     url: /
-  - title: tech
-    url: /tech/
-  - title: life
-    url: /life/
-  - title: review
-    url: /review/
-  - title: archive
-    url: /posts/
+  - title: documents
+    url: /documents/
   - title: about
     url: /about/

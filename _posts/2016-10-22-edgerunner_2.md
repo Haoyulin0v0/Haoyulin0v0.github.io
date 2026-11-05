@@ -1,22 +1,20 @@
 ---
 title: "FX戦士くるみちゃん"
 description: "review of FX戦士くるみちゃん"
-section: review
 categories: [review]
 tags: [FX戦士くるみちゃん]
 
 toc: false
 ---
 
-https://bangumi.tv/subject/513878
-
+<https://bangumi.tv/subject/513878>
 <!--more-->
 # 战斗， 爽
 
 搞不懂这动画有什么好喷的，它是角色动机不明？还是人物关系毫无铺垫？还是成长曲线模糊？还是剧情转折生硬？还是世界观战力崩坏？还是无意义升华了？
 
 
-<details>
+<details markdown="1">
 <summary> 剧透</summary>
 还有内阁土味说唱，女主超绝联通，老冯骨灰封烟，静步摸背身当着所有人的面开不出枪，真是让人向往啊，赛博朋克的世界
 
@@ -36,3 +34,4 @@ https://bangumi.tv/subject/513878
 ## 二、想到哪写到哪
 
 如果枪上挂着一只枪，那么总有一幕它会开出枪，但是这个b编剧和监督真的没有想过伏笔要怎么回收吗。
+

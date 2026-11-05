@@ -41,101 +41,101 @@
   });
 })();
 
-/* [FEATURE:SEARCH] 数据接口：search.json；栏目由 data-section 限定。
- * 关键词以空格分隔，多个关键词同时匹配；标签为精确匹配。
- * 使用 textContent 输出内容，避免文章文字被当作 HTML 执行。
- */
-(async () => {
+/* 正文裸链接：保留已有链接、代码与预格式化文本。 */
+(() => {
+  document.querySelectorAll('[data-article-body], .page-content .prose').forEach((root) => {
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: (node) => node.parentElement.closest('a, code, pre, script, style, textarea, svg')
+        ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT,
+    });
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach((node) => {
+      const pattern = /https?:\/\/[^\s<>"'，。；！？、（）【】]+/g;
+      const fragment = document.createDocumentFragment();
+      let cursor = 0;
+      for (const match of node.textContent.matchAll(pattern)) {
+        let url = match[0].replace(/[.,;:!?]+$/, '');
+        while (url.endsWith(')') && (url.match(/\)/g) || []).length > (url.match(/\(/g) || []).length) url = url.slice(0, -1);
+        if (!url) continue;
+        fragment.append(document.createTextNode(node.textContent.slice(cursor, match.index)));
+        const link = document.createElement('a');
+        link.href = url;
+        link.textContent = url;
+        fragment.append(link);
+        cursor = match.index + url.length;
+      }
+      if (cursor) {
+        fragment.append(document.createTextNode(node.textContent.slice(cursor)));
+        node.replaceWith(fragment);
+      }
+    });
+  });
+})();
+
+/* documents：标签可多选，同时匹配；筛选写入 URL，支持分享和浏览器返回。 */
+(() => {
   const archive = document.querySelector('[data-archive]');
   if (!archive) return;
   const tools = archive.querySelector('[data-search-tools]');
   const input = archive.querySelector('#post-search');
-  const select = archive.querySelector('#tag-filter');
-  const list = archive.querySelector('[data-post-list]');
-  const initialNodes = [...list.childNodes];
+  const tagList = archive.querySelector('[data-filter-tags]');
   const count = archive.querySelector('[data-result-count]');
   const empty = archive.querySelector('[data-no-results]');
-  const element = (tag, className, text) => {
-    const node = document.createElement(tag);
-    if (className) node.className = className;
-    if (text !== undefined) node.textContent = text;
-    return node;
-  };
-  const card = (post) => {
-    const node = element('article', 'post-card');
-    const meta = element('div', 'post-meta');
-    const time = element('time', '', post.date);
-    time.dateTime = post.date.replaceAll('.', '-');
-    meta.append(element('span', '', post.section_title), time);
-    const title = element('h3');
-    const link = element('a', '', post.title);
-    link.href = post.url;
-    title.append(link);
-    const bottom = element('div', 'card-bottom');
-    const tags = element('div', 'tags');
-    post.tags.slice(0, 3).forEach((tag) => {
-      const tagLink = element('a', '', tag);
+  const cards = [...archive.querySelectorAll('[data-document-card]')].map((node) => ({
+    node, tags: JSON.parse(node.dataset.tags || '[]'), text: node.dataset.search.toLocaleLowerCase(),
+  }));
+  let selected = new Set();
+  const render = (saveUrl = false) => {
+    const terms = input.value.trim().toLocaleLowerCase().split(/\s+/).filter(Boolean);
+    let found = 0;
+    cards.forEach((card) => {
+      const matches = [...selected].every((tag) => card.tags.includes(tag)) && terms.every((term) => card.text.includes(term));
+      card.node.hidden = !matches;
+      if (matches) found += 1;
+    });
+    tagList.querySelectorAll('[data-tag]').forEach((button) => button.setAttribute('aria-pressed', String(selected.has(button.dataset.tag))));
+    count.textContent = `${found} / ${cards.length} 篇文章`;
+    empty.hidden = found > 0 || (!cards.length && !terms.length && !selected.size);
+    if (saveUrl) {
       const url = new URL(location.href);
-      url.search = '';
-      url.searchParams.set('tag', tag);
-      tagLink.href = url.pathname + url.search;
-      tags.append(tagLink);
-    });
-    const read = element('a', 'read-link', '阅读');
-    read.href = post.url;
-    read.setAttribute('aria-label', `阅读：${post.title}`);
-    bottom.append(tags, read);
-    node.append(meta, title, element('p', '', post.description), bottom);
-    return node;
+      url.searchParams.delete('q');
+      url.searchParams.delete('tag');
+      if (input.value.trim()) url.searchParams.set('q', input.value.trim());
+      selected.forEach((tag) => url.searchParams.append('tag', tag));
+      history.pushState(null, '', url);
+    }
   };
-  try {
-    const response = await fetch(archive.dataset.searchUrl);
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    const data = await response.json();
-    const section = archive.dataset.section;
-    const posts = data.filter((post) => !section || post.section === section)
-      .map((post) => ({ ...post, tags: Array.isArray(post.tags) ? post.tags : [] }));
-    const tags = [...new Set(posts.flatMap((post) => post.tags))].sort((a, b) => a.localeCompare(b, 'zh-CN'));
-    tags.forEach((tag) => { const option = element('option', '', tag); option.value = tag; select.append(option); });
-    const restore = () => {
-      const params = new URLSearchParams(location.search);
-      input.value = params.get('q') || '';
-      const tag = params.get('tag') || '';
-      // 保留不存在的标签，给出零结果，而不是悄悄展示所有文章。
-      [...select.options].filter((option) => option.dataset.unknown).forEach((option) => option.remove());
-      if (tag && !tags.includes(tag)) {
-        const option = element('option', '', tag); option.value = tag; option.dataset.unknown = 'true'; select.append(option);
-      }
-      select.value = tag;
-    };
-    const render = (saveUrl = false) => {
-      const terms = input.value.trim().toLocaleLowerCase().split(/\s+/).filter(Boolean);
-      const results = posts.filter((post) => {
-        const text = [post.title, post.description, post.content, ...post.tags].join(' ').toLocaleLowerCase();
-        return (!select.value || post.tags.includes(select.value)) && terms.every((term) => text.includes(term));
-      });
-      count.textContent = `${results.length} 篇记录`;
-      // 没有文章且没有筛选时，保留服务端渲染的栏目提示。
-      if (posts.length || terms.length || select.value) list.replaceChildren(...results.map(card));
-      else list.replaceChildren(...initialNodes);
-      empty.hidden = results.length > 0 || (!posts.length && !terms.length && !select.value);
-      if (saveUrl) {
-        const url = new URL(location.href);
-        input.value.trim() ? url.searchParams.set('q', input.value.trim()) : url.searchParams.delete('q');
-        select.value ? url.searchParams.set('tag', select.value) : url.searchParams.delete('tag');
-        history.replaceState(null, '', url);
-      }
-    };
-    restore(); render(); tools.hidden = false;
-    let timer;
-    input.addEventListener('input', () => { clearTimeout(timer); timer = setTimeout(() => render(true), 150); });
-    select.addEventListener('change', () => render(true));
-    archive.querySelector('[data-clear-filters]').addEventListener('click', () => {
-      clearTimeout(timer); input.value = ''; select.value = ''; render(true); input.focus();
+  const restore = () => {
+    const params = new URLSearchParams(location.search);
+    input.value = params.get('q') || '';
+    selected = new Set(params.getAll('tag').filter(Boolean));
+    tagList.querySelectorAll('[data-unknown-tag]').forEach((button) => button.remove());
+    const known = new Set([...tagList.querySelectorAll('[data-tag]')].map((button) => button.dataset.tag));
+    selected.forEach((tag) => {
+      if (known.has(tag)) return;
+      const button = document.createElement('button');
+      button.type = 'button'; button.className = 'tag-chip';
+      button.dataset.tag = tag; button.dataset.unknownTag = 'true';
+      button.textContent = tag; tagList.append(button);
     });
-    window.addEventListener('popstate', () => { restore(); render(); });
-  } catch (error) {
-    archive.querySelector('[data-search-error]').hidden = false;
-    console.error('无法加载博客搜索索引', error);
-  }
+    render();
+  };
+  restore();
+  tools.hidden = false;
+  let timer;
+  input.addEventListener('input', () => { clearTimeout(timer); timer = setTimeout(() => render(true), 180); });
+  tagList.addEventListener('click', (event) => {
+    const button = event.target.closest('[data-tag]');
+    if (!button) return;
+    clearTimeout(timer);
+    selected.has(button.dataset.tag) ? selected.delete(button.dataset.tag) : selected.add(button.dataset.tag);
+    render(true);
+  });
+  archive.querySelector('[data-clear-filters]').addEventListener('click', () => {
+    clearTimeout(timer); input.value = ''; selected.clear();
+    tagList.querySelectorAll('[data-unknown-tag]').forEach((button) => button.remove());
+    render(true); input.focus();
+  });
+  window.addEventListener('popstate', () => { clearTimeout(timer); restore(); });
 })();

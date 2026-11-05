@@ -1,20 +1,19 @@
 ---
-title: "日记或感想标题"
-description: "一句话记录这篇文章的心情。"
-section: life
-categories: [life]
-tags: [日记]
+title: "追番计划"
+description: "2026-10-08"
+categories: [review]
+tags: [plan]
 toc: false
 ---
 
-从一件小事、一部作品或一首歌开始。
 
 <!--more-->
 
-## 留下印象的片段
+## the plan of animation for the future
+shirobako movie version -> 魔法少女小圆 -> 画到死/伪物语...
 
-写下触动自己的细节。
 
-## 此刻的想法
+希望白箱剧场版也能很好看吧，但是似乎评分确实没有TV那么高
 
-不用急着得出结论，先把感受记下来。
+
+
