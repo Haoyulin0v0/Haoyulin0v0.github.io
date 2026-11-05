@@ -1,14 +1,8 @@
 # 写作时可参考的标签，自由增删；文章可以使用列表以外的任意标签。
 # documents 的筛选项从已发布文章自动收集，不会显示没有文章的标签。
 suggestions:
-  - Bioinformatics
-  - CS Learning
-  - 编程
-  - 学习笔记
-  - 日记
-  - 随想
-  - 动画
-  - 电影
-  - 音乐
-  - 观后感
-  - 追番计划
+  - Review
+  - Music
+  - Animation
+  - Bioinformation
+  - Python

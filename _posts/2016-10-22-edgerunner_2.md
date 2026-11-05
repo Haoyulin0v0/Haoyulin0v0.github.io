@@ -1,9 +1,8 @@
 ---
-title: "FX戦士くるみちゃん"
-description: "review of FX戦士くるみちゃん"
-categories: [review]
-tags: [FX戦士くるみちゃん]
-
+title: "cyberpunk edgerunner 2"
+description: "review of cyberpunk edgerunner 2"
+tags: [cyberpunk edgerunner 2, trigger, 扳机社, 幽默]
+published: false
 toc: false
 ---
 

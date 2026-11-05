@@ -1,9 +1,8 @@
 ---
 title: "shirobako TV"
 description: "review of shirobako TV version"
-categories: [review]
-tags: [shirobako]
-
+tags: [shirobako, review, 白箱]
+published: true
 toc: false
 ---
 

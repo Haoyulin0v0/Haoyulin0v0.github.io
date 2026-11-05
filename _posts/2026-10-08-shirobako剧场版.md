@@ -1,6 +1,6 @@
 ---
-title: "shirobako TV"
-description: "review of shirobako TV version"
+title: "shirobako Movie"
+description: "review of shirobako Movie version"
 categories: [review]
 tags: [shirobako]
 
